@@ -52,14 +52,13 @@ export default class PowerButtons extends React.Component {
     }
 
     render() {
-        return <div>
-            <h2 className="h2">Power controls</h2>
+        return (
+        <div className="navbar-nav col-sm-2">
             <div className="btn-group" role="group">
                 <button type="button" className="btn btn-success col-10" onClick={() => this.turnOn()}>On</button>
                 <button type="button" className="btn btn-danger col-10" onClick={() => this.turnOff()}>Off</button>
                 <button type="button" className="btn btn-warning col-10" onClick={() => this.reset()}>Reset</button>
             </div>
-            <div>Powered: {String(this.state.isPowered)}</div>
-        </div>
+        </div>);
     }
 }

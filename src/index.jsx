@@ -14,12 +14,18 @@ class Main extends React.Component {
     }
 
     render() {
-        return <div>
-            <ConnectionManager websocket={this.websocket}></ConnectionManager>
-            <LedController websocket={this.websocket}></LedController>
-            <PowerButtons websocket={this.websocket}></PowerButtons>
-            <DHT11 websocket={this.websocket}></DHT11>
-        </div>
+        return <main>
+            <nav className="navbar navbar-dark sticky-top bg-dark">
+                <div className="container flex-md-nowrap">
+                    <PowerButtons websocket={this.websocket}></PowerButtons>
+                    <ConnectionManager websocket={this.websocket}></ConnectionManager>
+                </div>
+            </nav>
+            <div className="container mt-2">
+                <LedController websocket={this.websocket}></LedController>
+                <DHT11 websocket={this.websocket}></DHT11>
+            </div>
+        </main>;
     }
 }
 
