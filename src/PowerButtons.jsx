@@ -51,14 +51,29 @@ export default class PowerButtons extends React.Component {
         }
     }
 
+    renderPowerButton() {
+        let callback = this.state.isPowered ? (() => this.turnOff()) : (() => this.turnOn());
+        let className = this.state.isPowered ? "btn-danger" : "btn-success";
+        return (
+        <button type="button" className={"btn "+className} onClick={callback}>
+            <i className="fa fa-power-off"></i>
+        </button>); 
+    }
+
+    renderResetButton() {
+        return (
+        <button type="button" className="btn btn-warning" onClick={() => this.reset()}>
+            <i className="fa fa-redo"></i>
+        </button>);
+    }
+
     render() {
         return (
-        <div className="navbar-nav col-sm-2">
+        <div className="navbar-nav col">
             <div className="btn-group" role="group">
-                <button type="button" className="btn btn-success col-10" onClick={() => this.turnOn()}>On</button>
-                <button type="button" className="btn btn-danger col-10" onClick={() => this.turnOff()}>Off</button>
-                <button type="button" className="btn btn-warning col-10" onClick={() => this.reset()}>Reset</button>
-            </div>
+                {this.renderPowerButton()}
+                {this.renderResetButton()}
+           </div>
         </div>);
     }
 }

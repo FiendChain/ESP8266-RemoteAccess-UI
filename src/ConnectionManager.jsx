@@ -41,11 +41,13 @@ export default class ConnectionManager extends React.Component {
 
     renderControls() {
         let className = this.state.isConnected ? "btn-danger" : "btn-success";
-        let text      = this.state.isConnected ? "Disconnect" : "Connect";
         let callback  = this.state.isConnected ? () => this.close() : () => this.open(); 
+        let icon = this.state.isConnected ? "fa fa-unlink" : "fa fa-link";
         return (
         <div className="input-group-append">
-            <button type="button" className={"btn "+className} onClick={callback}>{text}</button>
+            <button type="button" className={"btn "+className} onClick={callback}>
+                <i className={icon}></i>
+            </button>
         </div>);
     }
 
