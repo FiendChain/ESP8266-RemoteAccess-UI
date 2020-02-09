@@ -8,7 +8,7 @@ export default class DHT11 extends React.Component {
         this.props.websocket.listen(this.dataListener.bind(this), WebsocketManager.EventType.DATA);
         this.props.websocket.listen((status) => {
             if (status) {
-                this.getInfo();
+                setTimeout(() => this.getInfo(), 100);
             }
         }, WebsocketManager.EventType.SOCKET_STATUS);
         this.state = {
