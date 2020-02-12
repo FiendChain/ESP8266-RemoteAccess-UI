@@ -16,7 +16,7 @@ export default class Slider extends LedController {
     }
 
     createSlider(value, index) {
-       return <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+       return <li className="list-group-item d-flex justify-content-between align-items-center">
             <input  className="custom-range mr-2 w-90" type="range"
                     min="0" max="128" step="1"
                     value={value} 
@@ -26,10 +26,19 @@ export default class Slider extends LedController {
     }
 
     render() {
-        let sliders = this.leds.map((d, i) => this.createSlider(d, i)); 
-        return (
-        <div>
-            {sliders}
-        </div>);
+        const totalColumns = 2;
+        let rows = [];
+        for (let i = 0; this.leds && i < this.leds.length; i += totalColumns) {
+            let cols = [];
+            for (let col = 0; col < totalColumns; col++) {
+                let index = i+col;
+                if (index < this.leds.length) {
+                    let value = this.leds[index];
+                    cols.push(<div className="col" key={index}>{this.createSlider(value, index)}</div>);
+                }
+            }
+            rows.push(<div className="row" key={rows.length}>{cols}</div>);
+        }
+        return <div className="container-fluid">{rows}</div>;
     }
 }

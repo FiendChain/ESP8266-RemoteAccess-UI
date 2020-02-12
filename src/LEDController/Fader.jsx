@@ -72,7 +72,7 @@ export default class Fader extends LedController {
     }
 
     createSlider(value, index) {
-       return <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+       return <li className="list-group-item d-flex justify-content-between align-items-center">
             <input  className="custom-range mr-2 w-90" type="range"
                     min="0" max="20" step="1"
                     value={value} 
@@ -82,10 +82,20 @@ export default class Fader extends LedController {
     }
 
     render() {
-        let sliders = this.state.fadeValues.map((d, i) => this.createSlider(d, i)); 
-        return (
-        <div>
-            {sliders}
-        </div>);
+        let totalColumns = 2;
+        let rows = [];
+        let values = this.state.fadeValues;
+        for (let i = 0; i < values.length; i += totalColumns) {
+            let cols = [];
+            for (let col = 0; col < totalColumns; col++) {
+                let index = i + col;
+                if (index < values.length) {
+                    let value = values[index];
+                    cols.push(<div className="col" key={index}>{this.createSlider(value, index)}</div>);
+                }
+            }
+            rows.push(<div className="row" key={rows.length}>{cols}</div>);
+        }
+        return <div className="container-fluid">{rows}</div>;
     }
 }
