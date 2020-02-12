@@ -8,8 +8,8 @@ Server for ESP8266 can be [found here](https://github.com/FiendChain/ESP8266-Rem
 
 ## Gallery
 ### Client disconnected
-![alt text](docs/disconnected.png "Disconnected")
+![alt text](docs/disconnected.PNG "Disconnected")
 ### Client connected and PC off
-![alt text](docs/off.png "Computer Off")
+![alt text](docs/off.PNG "Computer Off")
 ### Client connected and controlling leds
 ![alt text](docs/slider.png "Slider menu")
