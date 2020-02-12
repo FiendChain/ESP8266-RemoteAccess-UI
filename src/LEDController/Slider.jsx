@@ -1,18 +1,18 @@
-import WebsocketManager from "../WebsocketManager.jsx";
+import LedController from "./LedController.jsx";
 
 import React from 'react';
 import ReactDom from 'react-dom';
 
-export default class Slider extends React.Component {
+export default class Slider extends LedController {
     constructor(props) {
         super(props);
     }   
 
     onLedChange(index, event) {
         let value = event.target.value;
-        let leds = [...this.props.leds];
+        let leds = [...this.leds];
         leds[index] = value;
-        this.props.setLeds(leds);
+        this.leds = leds;
     }
 
     createSlider(value, index) {
@@ -26,7 +26,7 @@ export default class Slider extends React.Component {
     }
 
     render() {
-        let sliders = this.props.leds.map((d, i) => this.createSlider(d, i)); 
+        let sliders = this.leds.map((d, i) => this.createSlider(d, i)); 
         return (
         <div>
             {sliders}
