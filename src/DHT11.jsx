@@ -91,9 +91,11 @@ export default class DHT11 extends React.Component {
                 <h3>DHT11</h3>
                 <button className="btn btn-sm btn-outline-secondary" onClick={() => this.getInfo()}>Refresh</button>
             </div>
-            <div className="row">
-                <div className="col">{this.renderTemperature()}</div>
-                <div className="col">{this.renderHumidity()}</div>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col">{this.renderTemperature()}</div>
+                    <div className="col">{this.renderHumidity()}</div>
+                </div>
             </div>
         </div>
     }
