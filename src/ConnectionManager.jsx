@@ -9,8 +9,8 @@ export default class ConnectionManager extends React.Component {
         this.props.websocket.listen(this.setStatus.bind(this), WebsocketManager.EventType.SOCKET_STATUS);
         this.state = {
             isConnected: false,
-            // url: "192.168.1.109:80/api/v1/websocket"
-            url: window.location.hostname+":80/api/v1/websocket"
+            url: "192.168.1.109:80/api/v1/websocket"
+            // url: window.location.hostname+":80/api/v1/websocket"
         };
         setTimeout(() => this.open(), 0);
     }
@@ -41,6 +41,11 @@ export default class ConnectionManager extends React.Component {
             <input className="form-control form-control-light" 
                 value={this.state.url}
                 onChange={this.onURLChange.bind(this)}
+                onKeyDown={(ev) => {
+                    if (ev.key === "Enter") {
+                        this.open();
+                    }
+                }}
                 type="text" aria-label="URL"></input>
             {this.renderControls()}
         </div>);
