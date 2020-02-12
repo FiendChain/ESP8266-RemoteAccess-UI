@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ESP8266-RemoteAccess-UI/precache-manifest.3b0747dd1aaa27c078987ad92faf078c.js"
+  "/ESP8266-RemoteAccess-UI/precache-manifest.610b3f1dca24521aa6c20fa0e207c816.js"
 );
 
 self.addEventListener('message', (event) => {
