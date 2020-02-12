@@ -9,6 +9,21 @@ export default class WebsocketManager {
         this.data_callbacks = new Set();
         this.status_callbacks = new Set();
         this.EventType = EventType;
+
+        this.buffer = [];
+        this.sendBuffer()
+    }
+
+    sendBuffer() {
+        let bufferedPacket = this.buffer.shift();
+        if (bufferedPacket === undefined) {
+            setTimeout(() => this.sendBuffer(), 10);
+            return;
+        }
+        let data = bufferedPacket.data;
+        let buffer = new Uint8Array(data);
+        this.websocket.send(buffer);
+        setTimeout(() => this.sendBuffer(), bufferedPacket.wait);
     }
 
     notifyOnStatus(status) {
@@ -56,10 +71,13 @@ export default class WebsocketManager {
         return true;
     }
 
-    send(data) {
+    send(data, wait=10) {
         if (this.isActive()) {
-            let buffer = new Uint8Array(data);
-            this.websocket.send(buffer);
+            let packet = {
+                data: data,
+                wait: wait
+            };
+            this.buffer.push(packet);
             return true;
         }
         return false;

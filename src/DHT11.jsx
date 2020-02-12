@@ -8,7 +8,7 @@ export default class DHT11 extends React.Component {
         this.props.websocket.listen(this.dataListener.bind(this), WebsocketManager.EventType.DATA);
         this.props.websocket.listen((status) => {
             if (status) {
-                setTimeout(() => this.getInfo(), 100);
+                this.getInfo();
             }
         }, WebsocketManager.EventType.SOCKET_STATUS);
         this.state = {
@@ -32,7 +32,7 @@ export default class DHT11 extends React.Component {
     }
 
     getInfo() {
-        this.props.websocket.send([0x03]);
+        this.props.websocket.send([0x03], 300);
     }
 
     renderTemperature() {
