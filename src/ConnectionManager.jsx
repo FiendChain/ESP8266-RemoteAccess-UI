@@ -9,14 +9,14 @@ export default class ConnectionManager extends React.Component {
         this.props.websocket.listen(this.setStatus.bind(this), WebsocketManager.EventType.SOCKET_STATUS);
         this.state = {
             isConnected: false,
-            url: "192.168.1.109:80/api/v1/websocket"
+            url: "wss://192.168.1.109:80/api/v1/websocket"
             // url: window.location.hostname+":80/api/v1/websocket"
         };
         setTimeout(() => this.open(), 0);
     }
 
     open() {
-        this.props.websocket.open("ws://"+this.state.url);
+        this.props.websocket.open(this.state.url);
     }
 
     close() {
@@ -36,7 +36,9 @@ export default class ConnectionManager extends React.Component {
         return (
         <div className="input-group">
             <div className="input-group-prepend">
-                <span className="input-group-text">ws://</span>
+                <span className="input-group-text">
+                    <i className="fa fa-plug"></i>
+                </span>
             </div>
             <input className="form-control form-control-light" 
                 value={this.state.url}
